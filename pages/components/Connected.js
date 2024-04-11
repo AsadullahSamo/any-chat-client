@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, use } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import logo from '../../public/assets/icons/logo.svg';
 import font from '../../styles/Fonts.module.css';
@@ -27,7 +27,7 @@ export default function Connected() {
     const [name, setName] = useState('');
     const [active, setActive] = useState("allMessages");
     const [connectedUsers, setConnectedUsers] = useState([])
-    const [nickname, setNickname] = useState(router.asPath.split('=')[1]); // ['nickname']
+    const [nickname, setNickname] = useState(router.asPath.split('=')[1]);
     const [height, setHeight] = useState(0);
     const [showEmojis, setShowEmojis] = useState(false);
     const [data, setData] = useState([{name: '', message: '', time: ''}]);
@@ -45,11 +45,11 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`http://localhost:8000/users`)
+      fetch(`https://any-chat-client.onrender.com/users`)
       .then(res => res.json())
       .then(data => setConnectedUsers(data))
 
-      fetch(`http://localhost:8000/users/all`)
+      fetch(`https://any-chat-client.onrender.com/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -60,14 +60,14 @@ export default function Connected() {
         }
       });
 
-      fetch(`http://localhost:8000/users/${nickname}`)
+      fetch(`https://any-chat-client.onrender.com/users/${nickname}`)
       .then(res => res.json())
       .then(data => setMyMessages(data))
     }, [])
 
 
     useEffect(() => {
-      const newSocket = io('http://localhost:3000');
+      const newSocket = io('https://any-chat-client.onrender.com');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  
