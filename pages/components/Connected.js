@@ -67,7 +67,7 @@ export default function Connected() {
 
 
     useEffect(() => {
-      const newSocket = io('https://any-chat-server.onrender.com');
+      const newSocket = io('https://any-chat-server.onrender.com:3000');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  
