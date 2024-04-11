@@ -45,11 +45,11 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`https://any-chat-client.onrender.com/users`)
+      fetch(`https://any-chat-server.onrender.com/users`)
       .then(res => res.json())
       .then(data => setConnectedUsers(data))
 
-      fetch(`https://any-chat-client.onrender.com/users/all`)
+      fetch(`https://any-chat-server.onrender.com/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -60,14 +60,14 @@ export default function Connected() {
         }
       });
 
-      fetch(`https://any-chat-client.onrender.com/users/${nickname}`)
+      fetch(`https://any-chat-server.onrender.com/users/${nickname}`)
       .then(res => res.json())
       .then(data => setMyMessages(data))
     }, [])
 
 
     useEffect(() => {
-      const newSocket = io('https://any-chat-client.onrender.com');
+      const newSocket = io('https://any-chat-server.onrender.com');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  
