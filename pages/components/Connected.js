@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, use } from 'react';
 import Image from 'next/image';
 import logo from '../../public/assets/icons/logo.svg';
 import font from '../../styles/Fonts.module.css';
@@ -20,6 +20,7 @@ export default function Connected() {
     const inputRef = useRef(null);
     const messageRef = useRef(null);
     
+    const [loading, setLoading] = useState(true);
     const [emojis, setEmojis] = useState([]);
     const [myMessages, setMyMessages] = useState([{name: '', message: '', time: ''}]);
     const [allMessages, setAllMessages] = useState([{name: '', message: '', time: ''}]);
@@ -27,7 +28,7 @@ export default function Connected() {
     const [name, setName] = useState('');
     const [active, setActive] = useState("allMessages");
     const [connectedUsers, setConnectedUsers] = useState([])
-    const [nickname, setNickname] = useState(router.asPath.split('=')[1]);
+    const [nickname, setNickname] = useState(router.asPath.split('=')[1]); // ['nickname']
     const [height, setHeight] = useState(0);
     const [showEmojis, setShowEmojis] = useState(false);
     const [data, setData] = useState([{name: '', message: '', time: ''}]);
@@ -40,16 +41,17 @@ export default function Connected() {
         
 
     useEffect(() => {
+      setLoading(true);
       const deletedMessages = JSON.parse(localStorage.getItem('deletedMessages'));
       fetch('https://emoji-api.com/emojis?access_key=81b5e5f1c8f229449b4936039e5e60899f95f4c3')
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`https://any-chat-server.onrender.com/users`)
+      fetch(`http://localhost:8000/users`)
       .then(res => res.json())
       .then(data => setConnectedUsers(data))
 
-      fetch(`https://any-chat-server.onrender.com/users/all`)
+      fetch(`http://localhost:8000/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -58,16 +60,21 @@ export default function Connected() {
         } else {
           setData(data);
         }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false); // Clear loading state in case of an error
       });
 
-      fetch(`https://any-chat-server.onrender.com/users/${nickname}`)
+      fetch(`http://localhost:8000/users/${nickname}`)
       .then(res => res.json())
       .then(data => setMyMessages(data))
     }, [])
 
 
     useEffect(() => {
-      const newSocket = io('https://any-chat-server.onrender.com');
+      const newSocket = io('http://localhost:3000');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  
@@ -209,9 +216,15 @@ export default function Connected() {
       setActive("myMessages")
     } // end of showMyMessages
 
+    
     return (
       <>
-        <main className="min-h-screen bg-[#edf0f8]">
+      {loading ? (
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-900 bg-opacity-50 z-50">
+          <div className={`${style.loader}`}></div>
+        </div>
+      ) : (
+          <main className="min-h-screen bg-[#edf0f8]">
           <header className="flex justify-between items-center pt-10 mx-10">
             <Image src={logo} alt='Any chat application logo' className="clear-right" />
             <p className="text-2xl"> Online: {connectedUsers.length} </p>
@@ -284,6 +297,8 @@ export default function Connected() {
           </section>
 
         </main>
+      )}
       </>
-    );
+      )
+
 }
