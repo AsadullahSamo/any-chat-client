@@ -126,7 +126,7 @@ export default function Connected() {
 
         socket.on('delete-message', (index, activeTab, msg, t) => {
           if(activeTab === "allMessages") {
-            setData(prevData => prevData.filter((message, i) => i !== index));
+            setData(prevData => prevData.filter((message, i) => message.message != msg && message.time !== t));
             console.log("Index to be deleted is ", index)
           }
           else {
