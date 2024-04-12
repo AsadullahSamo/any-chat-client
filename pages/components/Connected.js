@@ -47,11 +47,11 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`http://localhost:8000/users`)
+      fetch(`https://any-chat-server.onrender.com/users`)
       .then(res => res.json())
       .then(data => setConnectedUsers(data))
 
-      fetch(`http://localhost:8000/users/all`)
+      fetch(`https://any-chat-server.onrender.com/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -67,7 +67,7 @@ export default function Connected() {
         setLoading(false); // Clear loading state in case of an error
       });
 
-      fetch(`http://localhost:8000/users/${nickname}`)
+      fetch(`https://any-chat-server.onrender.com/users/${nickname}`)
       .then(res => res.json())
       .then(data => setMyMessages(data))
     }, [])
