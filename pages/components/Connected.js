@@ -54,7 +54,7 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`https://any-chat-server.onrender.com/users`)
+      fetch(`https://any-chat-server.vercel.app/users`)
       .then(res => res.json())
       .then(data => {
         setConnectedUsers(data)
@@ -62,7 +62,7 @@ export default function Connected() {
         setSectionHeight(sectionHeightRef.current?.clientHeight + 20)
       })
 
-      fetch(`https://any-chat-server.onrender.com/users/all`)
+      fetch(`https://any-chat-server.vercel.app/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -78,14 +78,14 @@ export default function Connected() {
         setLoading(false); // Clear loading state in case of an error
       });
 
-      fetch(`https://any-chat-server.onrender.com/users/${nickname}`)
+      fetch(`https://any-chat-server.vercel.app/users/${nickname}`)
       .then(res => res.json())
       .then(data => setMyMessages(data))
     }, [])
 
 
     useEffect(() => {
-      const newSocket = io('https://any-chat-server.onrender.com');
+      const newSocket = io('https://any-chat-server.vercel.app');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  

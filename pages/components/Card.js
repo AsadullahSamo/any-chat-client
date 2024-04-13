@@ -15,7 +15,7 @@ export default function Card( { siteUrl, messagePart, name, nickname } ) {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`https://any-chat-server.onrender.com/scrape?url=${siteUrl}`)
+        fetch(`https://any-chat-server.vercel.app/scrape?url=${siteUrl}`)
         .then(res => res.json())
         .then(data => {
           setImage(data.image);
