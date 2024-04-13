@@ -33,6 +33,7 @@ export default function Connected() {
     const [name, setName] = useState('');
     const [active, setActive] = useState("allMessages");
     const [connectedUsers, setConnectedUsers] = useState([])
+    const [originalConnectedUsers, setOriginalConnectedUsers] = useState([])
     const [nickname, setNickname] = useState(router.asPath.split('=')[1]); // ['nickname']
     const [height, setHeight] = useState(0);
     const [sectionHeight, setSectionHeight] = useState(0);
@@ -57,6 +58,7 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => {
         setConnectedUsers(data)
+        setOriginalConnectedUsers(data)
         setSectionHeight(sectionHeightRef.current?.clientHeight + 20)
       })
 
@@ -92,11 +94,13 @@ export default function Connected() {
 
       newSocket.on('user-disconnect', (name) => {
         setConnectedUsers(prevUsers => prevUsers.filter(user => user !== name))
+        setOriginalConnectedUsers(prevUsers => prevUsers.filter(user => user !== name))
       })
 
       newSocket.emit('user-connected', router.asPath.split('=')[1])
       newSocket.on('user-connected', (name) => {
         setConnectedUsers(name)
+        setOriginalConnectedUsers(name)
       })
 
       return () => {
@@ -232,6 +236,16 @@ export default function Connected() {
       setActive("myMessages")
     } // end of showMyMessages
 
+    const handleSearchChange = (e) => {
+      const userToSearch = e.target.value.toLowerCase()
+      if (userToSearch === '') {
+        setConnectedUsers([...originalConnectedUsers]);
+      } else {
+        const filteredUser = connectedUsers.filter(user => user.toLowerCase().startsWith(userToSearch));
+        setConnectedUsers(filteredUser);
+      }
+    } // end of handleChange
+
     
     return (
       <>
@@ -251,7 +265,7 @@ export default function Connected() {
               {/* Dialog */}
               <Dialog fullWidth={fullScreen} open={open} onClose={handleDialogClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogContent>
-                  <input ref={messageRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg -ml-[12px] md:mx-2 pl-4 w-[17.5rem] md:w-[33rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} placeholder={`Send a message to ${name}`} />
+                  <input ref={messageRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg -ml-[12px] md:mx-2 pl-4 w-[19.5rem] md:w-[33rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} placeholder={`Send a message to ${name}`} />
                 </DialogContent>
                 <DialogActions>
                   <button onClick={handleSpecificMessage} className='text-white hover:text-black font-semibold hover:border-2 hover:border-solid hover:border-[#434ce6] hover:bg-white hover:cursor-pointer hover:transition-all hover:duration-500 w-36 h-12 rounded-lg bg-[#434CE6]'> Send </button>
@@ -289,15 +303,14 @@ export default function Connected() {
               {/* Input */}
               <footer className='-mt-4 w-[100%] h-[10vh] bg-[#ced9de] rounded-b-lg flex justify-center gap-2'>
                 <Image onClick={handleShowEmojis} src={emoji} alt="Smiling Emoji icon" className={`ml-2 md:ml-0 self-center hover:cursor-pointer`} />
-                <input placeholder='Send a message' style={{overflowWrap: 'break-word', resize: 'none', overflow: 'hidden'}} onKeyDown={handleKeyDown} ref={inputRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`self-center ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[88%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
+                <input placeholder='Send a message' onKeyDown={handleKeyDown} ref={inputRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`self-center ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[88%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
                 <button onClick={handleClick}> <Image src={sendMessage} alt='Send message icon' className='mr-2 md:mr-0 self-center bg-[#9bb0bb] w-8 h-8 p-1 rounded-full hover:cursor-pointer hover:bg-[#5b6063] hover:transition-all hover:duration-500' /> </button>
               </footer>
             </div>
 
             {/* Connected Users */}
-            {/* md:h-[${sectionHeight}px] h-[${sectionHeight}px] */}
             <aside ref={sectionHeightRef} className={`md:w-96 md:h-[100vh] h-[30vh] overflow-y-auto mt-5 self-center md:self-start mx-auto md:mx-auto w-[100%] bg-white mr-10 mb-10`}>
-              {/* <h1 className='md:hidden text-2xl font-bold text-center mt-5 hover:cursor-pointer' onClick={handleUserDialogOpen}> Open users </h1> */}
+            <input placeholder='Search the user' onChange={handleSearchChange} type='search' maxLength={1000} className={`mt-5 ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[95%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
               <div className={`overflow-y items-center flex flex-col`}>
                 {connectedUsers.length !== 0 &&
                   connectedUsers.map((user, index) => {
