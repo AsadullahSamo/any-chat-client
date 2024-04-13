@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 export default function Messages( {messages, nickname, onDeleteMessage, onDeleteForMe} ) {
 
-    const [dropdowns, setDropdowns] = useState(Array.isArray(messages) ? Array(messages.length).fill(false) : []);
+    const [dropdowns, setDropdowns] = useState(Array(messages.length).fill(false));
     const [index, setIndex] = useState(0);
     const toggleDropdown = (index) => {
         console.log(index)
@@ -43,12 +43,7 @@ export default function Messages( {messages, nickname, onDeleteMessage, onDelete
         closeDropdown(messageIndex);
     }
 
-    if (!Array.isArray(messages) || messages.length === 0) {
-        return null;
-    }
-
     return (
-        
         messages.map((user, messageIndex) => {
             return (
                 <React.Fragment key={messageIndex}>
@@ -66,7 +61,7 @@ export default function Messages( {messages, nickname, onDeleteMessage, onDelete
                     </>
                     ) : (
                     <>
-                        <div className={` w-[30%] ${user.name === nickname ? 'text-white bg-blue-500 self-end mr-10' : 'text-[#737070] bg-[#D6DCE3] mx-10'} mt-5 rounded-tr-3xl rounded-tl-3xl rounded-br-3xl`}>
+                        <div className={`w-[70%] md:w-[30%] ${user.name === nickname ? 'text-white bg-blue-500 self-end md:mr-10 mr-3' : 'text-[#737070] bg-[#D6DCE3] ml-3 md:mx-10'} mt-5 rounded-tr-3xl rounded-tl-3xl rounded-br-3xl`}>
                             <span className='hover:cursor-pointer mr-5 self-center float-right relative top-0' onClick={() => toggleDropdown(messageIndex)}> &#x25be; </span>
                             <p className={`break-words px-4 text-center ${font.poppinsMedium}`}> {user.message}  </p>    
                         </div>
