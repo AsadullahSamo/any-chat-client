@@ -43,7 +43,12 @@ export default function Messages( {messages, nickname, onDeleteMessage, onDelete
         closeDropdown(messageIndex);
     }
 
+    if (!Array.isArray(messages) || messages.length === 0) {
+        return null;
+    }
+
     return (
+
         messages.map((user, messageIndex) => {
             return (
                 <React.Fragment key={messageIndex}>
