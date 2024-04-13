@@ -310,7 +310,7 @@ export default function Connected() {
 
             {/* Connected Users */}
             <aside ref={sectionHeightRef} className={`md:w-96 md:h-[100vh] h-[30vh] overflow-y-auto mt-5 self-center md:self-start mx-auto md:mx-auto w-[100%] bg-white mr-10 mb-10`}>
-            <input placeholder='Search the user to initiate private conversation' onChange={handleSearchChange} type='search' maxLength={1000} className={`mt-5 ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[95%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
+            <input placeholder='Search user to message privately' onChange={handleSearchChange} type='search' maxLength={1000} className={`mt-5 ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[95%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
               <div className={`overflow-y items-center flex flex-col`}>
                 {connectedUsers.length !== 0 &&
                   connectedUsers.map((user, index) => {
