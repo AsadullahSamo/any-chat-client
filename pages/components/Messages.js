@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 export default function Messages( {messages, nickname, onDeleteMessage, onDeleteForMe} ) {
 
-    const [dropdowns, setDropdowns] = useState(Array(messages.length).fill(false));
+    const [dropdowns, setDropdowns] = useState(Array.isArray(messages) ? Array(messages.length).fill(false) : []);
     const [index, setIndex] = useState(0);
     const toggleDropdown = (index) => {
         console.log(index)
