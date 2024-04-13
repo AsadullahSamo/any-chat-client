@@ -53,14 +53,14 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`http://localhost:8000/users`)
+      fetch(`https://any-chat-client.onrender.com/users`)
       .then(res => res.json())
       .then(data => {
         setConnectedUsers(data)
         setSectionHeight(sectionHeightRef.current?.clientHeight + 20)
       })
 
-      fetch(`http://localhost:8000/users/all`)
+      fetch(`https://any-chat-client.onrender.com/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -76,14 +76,14 @@ export default function Connected() {
         setLoading(false); // Clear loading state in case of an error
       });
 
-      fetch(`http://localhost:8000/users/${nickname}`)
+      fetch(`https://any-chat-client.onrender.com/users/${nickname}`)
       .then(res => res.json())
       .then(data => setMyMessages(data))
     }, [])
 
 
     useEffect(() => {
-      const newSocket = io('http://localhost:3000');
+      const newSocket = io('https://any-chat-client.onrender.com');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  
