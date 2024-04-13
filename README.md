@@ -46,7 +46,7 @@ We're constantly striving to enhance the Any-Chat experience and bring you excit
 
 - **Reply Feature**: Seamlessly reply to specific messages within a conversation, similar to the functionality found in popular messaging apps like WhatsApp.
 
-**Edit Chat**: Allow users to edit their previously sent messages for correction or clarification.
+- **Edit Chat**: Allow users to edit their previously sent messages for correction or clarification.
 
 **and many many more.**
 
