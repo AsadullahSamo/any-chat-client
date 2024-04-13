@@ -11,9 +11,13 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Messages from './Messages';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 export default function Connected() {
 
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
     const router = useRouter();
 
     const heightRef = useRef(null);
@@ -49,14 +53,14 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`https://any-chat-server.onrender.com/users`)
+      fetch(`http://localhost:8000/users`)
       .then(res => res.json())
       .then(data => {
         setConnectedUsers(data)
         setSectionHeight(sectionHeightRef.current?.clientHeight + 20)
       })
 
-      fetch(`https://any-chat-server.onrender.com/users/all`)
+      fetch(`http://localhost:8000/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -72,14 +76,14 @@ export default function Connected() {
         setLoading(false); // Clear loading state in case of an error
       });
 
-      fetch(`https://any-chat-server.onrender.com/users/${nickname}`)
+      fetch(`http://localhost:8000/users/${nickname}`)
       .then(res => res.json())
       .then(data => setMyMessages(data))
     }, [])
 
 
     useEffect(() => {
-      const newSocket = io('https://any-chat-server.onrender.com');
+      const newSocket = io('http://localhost:3000');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  
@@ -245,9 +249,9 @@ export default function Connected() {
           <section className="flex flex-col-reverse md:flex-row md:order-2 order-1" >
             <div ref={heightRef} className={`mb-5 h-[${height}vh] md:w-[70%] w-[95%] bg-white m-auto rounded-xl `}>
               {/* Dialog */}
-              <Dialog fullWidth={true} open={open} onClose={handleDialogClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+              <Dialog fullWidth={fullScreen} open={open} onClose={handleDialogClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogContent>
-                  <input ref={messageRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[88%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} placeholder={`Send a message to ${name}`} />
+                  <input ref={messageRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg -ml-[12px] md:mx-2 pl-4 w-[19.5rem] md:w-[33rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} placeholder={`Send a message to ${name}`} />
                 </DialogContent>
                 <DialogActions>
                   <button onClick={handleSpecificMessage} className='text-white hover:text-black font-semibold hover:border-2 hover:border-solid hover:border-[#434ce6] hover:bg-white hover:cursor-pointer hover:transition-all hover:duration-500 w-36 h-12 rounded-lg bg-[#434CE6]'> Send </button>
