@@ -28,7 +28,6 @@ export default function Connected() {
     const [loading, setLoading] = useState(true);
     const [emojis, setEmojis] = useState([]);
     const [userPosition, setUserPosition] = useState("top")
-    const [scrollArrowTopPosition, setScrollArrowTopPosition] = useState(93)
     const [myMessages, setMyMessages] = useState([{name: '', message: '', time: ''}]);
     const [allMessages, setAllMessages] = useState([{name: '', message: '', time: ''}]);
     const [open, setOpen] = useState(false);
@@ -324,9 +323,9 @@ export default function Connected() {
 
             <div className={`transition-all duration-500 fixed ${userPosition === "bottom" ? 'left-[75%]' : 'left-[65%]'} ${userPosition === "bottom" ? 'top-[80%]' : 'top-[93%]'} text-center size-12 bg-black mx-5 rounded-full animate-bounce`}>
               {userPosition === "top" ? 
-               (<span className='text-4xl font-bold cursor-pointer text-white' onClick={navigateUser}> &#11163; </span> )
+               (<span className='text-4xl font-bold cursor-pointer text-white' onClick={navigateUser}> &#8681; </span> )
                :
-               (<span className='text-4xl font-bold cursor-pointer text-white' onClick={navigateUser}> &#11161; </span> )
+               (<span className='text-4xl font-bold cursor-pointer text-white' onClick={navigateUser}> &#8679; </span> )
               }
             </div>
 
