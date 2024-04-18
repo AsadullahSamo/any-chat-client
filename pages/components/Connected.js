@@ -27,7 +27,7 @@ export default function Connected() {
     
     const [loading, setLoading] = useState(true);
     const [emojis, setEmojis] = useState([]);
-    const [userPosition, setUserPosition] = useState("top”)
+    const [userPosition, setUserPosition] = useState("top");
     const [myMessages, setMyMessages] = useState([{name: '', message: '', time: ''}]);
     const [allMessages, setAllMessages] = useState([{name: '', message: '', time: ''}]);
     const [open, setOpen] = useState(false);
