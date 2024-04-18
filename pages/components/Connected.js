@@ -321,7 +321,7 @@ export default function Connected() {
             }
             </div>
 
-            <div className={`transition-all duration-500 fixed ${userPosition === "bottom" ? 'left-[75%]' : 'left-[65%]'} ${userPosition === "bottom" ? 'top-[80%]' : 'top-[93%]'} text-center size-12 bg-black mx-5 rounded-full animate-bounce`}>
+            <div className={`transition-all duration-500 fixed ${userPosition === "bottom" ? 'left-[75%]' : 'left-[75%] md:left-[65%]'} ${userPosition === "bottom" ? 'top-[80%]' : 'top-[93%]'} text-center size-12 bg-black mx-5 rounded-full animate-bounce`}>
               {userPosition === "top" ? 
                (<span className='text-4xl font-bold cursor-pointer text-white' onClick={navigateUser}> &#8681; </span> )
                :
