@@ -301,11 +301,13 @@ export default function Connected() {
               </div>
 
               {/* Input */}
+            {active === "allMessages" &&
               <footer className='-mt-4 w-[100%] h-[10vh] bg-[#ced9de] rounded-b-lg flex justify-center gap-2'>
                 <Image onClick={handleShowEmojis} src={emoji} alt="Smiling Emoji icon" className={`ml-2 md:ml-0 self-center hover:cursor-pointer`} />
                 <input placeholder='Send a message' onKeyDown={handleKeyDown} ref={inputRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`self-center ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[88%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
                 <button onClick={handleClick}> <Image src={sendMessage} alt='Send message icon' className='mr-2 md:mr-0 self-center bg-[#9bb0bb] w-8 h-8 p-1 rounded-full hover:cursor-pointer hover:bg-[#5b6063] hover:transition-all hover:duration-500' /> </button>
               </footer>
+            }
             </div>
 
             {/* Connected Users */}
