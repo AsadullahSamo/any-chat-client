@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, use } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import logo from '../../public/assets/icons/logo.svg';
 import font from '../../styles/Fonts.module.css';
@@ -27,7 +27,7 @@ export default function Connected() {
     
     const [loading, setLoading] = useState(true);
     const [emojis, setEmojis] = useState([]);
-    const [userPosition, setUserPosition] = useState("top");
+    const [userPosition, setUserPosition] = useState("top")
     const [myMessages, setMyMessages] = useState([{name: '', message: '', time: ''}]);
     const [allMessages, setAllMessages] = useState([{name: '', message: '', time: ''}]);
     const [open, setOpen] = useState(false);
@@ -156,6 +156,14 @@ export default function Connected() {
           }
         })
 
+        socket.on('edit-message', (index, newData, activeTab) => {
+          if(activeTab === "allMessages") {
+            setData(prevData => prevData.map((message, i) => i === index ? {...message, message: newData} : message))
+          } else {
+            setMyMessages(prevData => prevData.map((message, i) => i === index ? {...message, message: newData} : message))
+          }
+        })
+
     }, [socket]);
 
     const handleDialogOpen = (name) => {
@@ -171,34 +179,38 @@ export default function Connected() {
     const deleteMessageForMe = (index) => {
       console.log("Index to be deleted is ", index)
       if(active === "allMessages") {
-        console.log("All messages to be deleted are ", data[index].message)
         socket.emit('delete-message-for-me', data[index].message, data[index].time, "allMessages", nickname);
         setData(prevData => prevData.filter((message, i) => message.message !== data[index].message && message.time !== data[index].time));
         const deletedMessages = JSON.parse(localStorage.getItem('deletedMessages')) || [];
         localStorage.setItem('deletedMessages', JSON.stringify([...deletedMessages, [data[index].message, data[index].time]]))
       } else {
-        console.log("My messages to be deleted are ", myMessages[index].message)
-        console.log("My messages to be deleted are ", myMessages[index].message)
         socket.emit('delete-message-for-me', myMessages[index].message, myMessages[index].time, "myMessages", nickname);
         setMyMessages(prevData => prevData.filter((message, i) => message.message !== myMessages[index].message && message.time !== myMessages[index].time));
       }
-      
     } // end of deleteMessageForMe
 
     const deleteMessageForEveryone = (index) => {
-      console.log("Index to be deleted is ", index)
       if(active === "allMessages") {
-        console.log("All messages to be deleted are ", data[index].message)
         if(data[index].name !== nickname) return;
         socket.emit('delete-message', index, data[index]._id, "allMessages", nickname, data[index].message, data[index].time);
         setData(prevData => prevData.filter((message, i) => message.message !== data[index].message && message.time !== data[index].time));
       } else {
-        console.log("My messages to be deleted are ", myMessages[index].message)
         if(myMessages[index].name !== nickname) return;
         socket.emit('delete-message', index, myMessages[index]._id, "myMessages", nickname, myMessages[index].message, myMessages[index].time);
         setMyMessages(prevData => prevData.filter((message, i) => message.message !== myMessages[index].message && message.time !== myMessages[index].time));
       }
     } // end of handleDeletedMessage
+
+    const handleEdit = (index, newData) => {
+      console.log(`Data to be edited is ${newData} and index is ${index}`)
+      if(active === "allMessages") {
+        socket.emit('edit-message', index, data[index].message, newData, data[index].time, "allMessages");
+        setData(prevData => prevData.map((message, i) => i === index ? {...message, message: newData} : message))
+      } else {
+        socket.emit('edit-message', index, myMessages[index].message, newData, myMessages[index].time, "myMessages");
+        setMyMessages(prevData => prevData.map((message, i) => i === index ? {...message, message: newData} : message))
+      }
+    }
 
     const handleClick = () => {
       if(inputRef.current.value === '') return;
@@ -292,9 +304,9 @@ export default function Connected() {
               {/* Messages */}
               <div className='flex flex-col mb-10 gap-10'>
                 {active === "allMessages" ?
-                  <Messages messages={data} nickname={nickname} onDeleteMessage={deleteMessageForEveryone} onDeleteForMe={deleteMessageForMe}/>
+                  <Messages messages={data} nickname={nickname} onDeleteMessage={deleteMessageForEveryone} onDeleteForMe={deleteMessageForMe} onEdit={handleEdit}/>
                   :
-                  <Messages messages={myMessages} nickname={nickname} onDeleteMessage={deleteMessageForEveryone} onDeleteForMe={deleteMessageForMe}/>
+                  <Messages messages={myMessages} nickname={nickname} onDeleteMessage={deleteMessageForEveryone} onDeleteForMe={deleteMessageForMe} onEdit={handleEdit}/>
                 }
               </div>
 
