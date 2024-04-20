@@ -202,7 +202,6 @@ export default function Connected() {
     } // end of handleDeletedMessage
 
     const handleEdit = (index, newData) => {
-      console.log(`Data to be edited is ${newData} and index is ${index}`)
       if(active === "allMessages") {
         socket.emit('edit-message', index, data[index].message, newData, data[index].time, "allMessages");
         setData(prevData => prevData.map((message, i) => i === index ? {...message, message: newData} : message))
