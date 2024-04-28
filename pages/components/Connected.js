@@ -95,9 +95,23 @@ export default function Connected() {
         setMyMessages(data)
       })
 
-      let myContacts = JSON.parse(localStorage.getItem("myContacts")) || [];
+    let myContacts = JSON.parse(localStorage.getItem("myContacts")) || [];
       setMyContacts(myContacts)
     }, [])
+  
+    useEffect(() => {
+        const handleScroll = () => {
+          if(window.scrollY < 290) {
+            setUserPosition("top")
+          } else {
+            setUserPosition("bottom")
+          }
+        }
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        }
+      }, [window.scrollY])
 
 
     useEffect(() => {
