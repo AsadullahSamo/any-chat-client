@@ -1,8 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/components/Connected": "pages/components/Connected.js",
-  "/": "pages/index.js",
-  "/components/ChatPage": "pages/components/ChatPage.js"
-}

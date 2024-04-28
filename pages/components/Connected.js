@@ -96,9 +96,22 @@ export default function Connected() {
       })
 
       let myContacts = JSON.parse(localStorage.getItem("myContacts")) || [];
-      setMyContacts(myContacts)
-    }, [])
+        setMyContacts(myContacts)
+      }, [])
 
+      useEffect(() => {
+        const handleScroll = () => {
+            if(window.scrollY < 290) {
+              setUserPosition("top")
+            } else {
+              setUserPosition("bottom")
+            }
+          }
+          window.addEventListener('scroll', handleScroll);
+          return () => {
+            window.removeEventListener('scroll', handleScroll);
+          }
+      }, [userPosition])
 
     useEffect(() => {
       const newSocket = io('https://any-chat-server.onrender.com');
