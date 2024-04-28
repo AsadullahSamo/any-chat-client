@@ -1,36 +1,36 @@
 .fadeIn {
-  animation: fadeIn 0.5s ease forwards;
-}
-
-.fadeOut {
-  animation: fadeOut 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+    animation: fadeIn 0.5s ease forwards;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .fadeOut {
+    animation: fadeOut 0.5s ease forwards;
   }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
   }
-}
-
+  
 .active {
---tw-text-opacity: 1;
-color: rgb(255 255 255 / var(--tw-text-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 /* HTML: <div class="loader"></div> */
@@ -58,7 +58,7 @@ color: rgb(255 255 255 / var(--tw-text-opacity));
   box-sizing: content-box;
   border-radius: 0 0 40% 40%;
   -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
+          mask-composite: exclude;
   background: 
     linear-gradient(var(--d,0deg),var(--c2) 50%,#0000 0) bottom /100% 205%,
     linear-gradient(var(--c2) 0 0) center/0 100%;

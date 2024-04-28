@@ -26,7 +26,6 @@ export default function Dropdown( {message, index, onDeleteClick, onDeleteForMe,
     useEffect(() => {
         if (open) {
             if (buttonRef.current) {
-                console.log(buttonRef.current.innerText);
                 setBtnRefValue(buttonRef.current.innerText);
             }
         }
@@ -42,19 +41,16 @@ export default function Dropdown( {message, index, onDeleteClick, onDeleteForMe,
     } // end of handleDialogClose
 
     const handleDeleteClick = () => {
-        console.log(index)
         onDeleteClick(index);
     } // end of handleDeleteClick
 
     const handleDeleteForMe = () => {
-        console.log(index)
         onDeleteForMe(index);
     }
 
     const handleEdit = () => {
         buttonRef.current && setBtnRefValue(buttonRef.current.innerText)
         onEdit(index, btnRefValue);
-        setOpen(false);
     };
 
     const handleBlur = (e) => {
@@ -95,7 +91,7 @@ export default function Dropdown( {message, index, onDeleteClick, onDeleteForMe,
         <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
             <ul className="py-1" role="none">
                 <li className={`text-gray-700 block px-4 py-2 text-sm ${font.poppinsRegular} hover:bg-gray-300 hover:cursor-pointer`} role="menuitem" tabIndex="-1" id="menu-item-0" onClick={() => handleDialogOpen("delete")}> Delete </li>
-                {name === nickname && <li className={`text-gray-700 block px-4 py-2 text-sm ${font.poppinsRegular} hover:bg-gray-300 hover:cursor-pointer`} role="menuitem" tabIndex="-1" id="menu-item-0" onClick={() => handleDialogOpen("edit")}> Edit </li> }
+                <li className={`text-gray-700 block px-4 py-2 text-sm ${font.poppinsRegular} hover:bg-gray-300 hover:cursor-pointer`} role="menuitem" tabIndex="-1" id="menu-item-0" onClick={() => handleDialogOpen("edit")}> Edit </li>
             </ul>
         </div>
     </div>

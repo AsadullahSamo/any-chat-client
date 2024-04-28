@@ -27,11 +27,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/components/ChatPage": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/components/ChatPage.js"
-    ],
     "/components/Connected": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

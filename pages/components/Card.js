@@ -10,7 +10,6 @@ export default function Card( { siteUrl, messagePart, name, nickname } ) {
     // Custom api in case of api limit reached
     useEffect(() => {
         if(!dataFetched) {
-            console.log(`I will be executed because api limit is reached`)
             setLoading(true);
             fetch(`https://any-chat-server.onrender.com/scrape?url=${siteUrl}`)
                 .then(res => res.json())
