@@ -111,7 +111,7 @@ export default function Connected() {
         return () => {
           window.removeEventListener('scroll', handleScroll);
         }
-      }, [window.scrollY])
+      }, [userPosition])
 
 
     useEffect(() => {
