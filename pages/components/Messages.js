@@ -5,7 +5,7 @@ import Dropdown from './Dropdown';
 import { useState, useEffect } from 'react';
 import FilePreview from './FilePreview';
 
-export default function Messages( {messages, nickname, onDeleteMessage, onDeleteForMe, onEdit, isFile} ) {
+export default function Messages( {userDetailsName, messages, nickname, onDeleteMessage, onDeleteForMe, onEdit, isFile} ) {
 
     const [dropdowns, setDropdowns] = useState(Array.isArray(messages) ? Array(messages.length).fill(false) : []);
     const [index, setIndex] = useState(0);
@@ -51,7 +51,7 @@ export default function Messages( {messages, nickname, onDeleteMessage, onDelete
         return null;
     }
     
-    return messages && (
+    return messages && userDetailsName !== '' && (
          messages.map((user, messageIndex) => {
             return (
                 <React.Fragment key={messageIndex}>
@@ -70,9 +70,9 @@ export default function Messages( {messages, nickname, onDeleteMessage, onDelete
                     ) : user.isFile ? (
                         // Condition 2: User message is a file
                         <>
-                            <span className={`text-black rounded hover:cursor-pointer ${user.name === nickname ? 'self-end right-10' : 'self-start left-10'} top-[4.8rem] relative text-3xl`} onClick={() => toggleDropdown(messageIndex)}> &#x25be; </span>
+                            <span className={`text-red-500 rounded hover:cursor-pointer ${user.name === nickname ? 'self-end right-10' : 'self-start left-10'} top-[4.8rem] relative text-3xl`} onClick={() => toggleDropdown(messageIndex)}> &#x25be; </span>
                             <div className={`mt-5 rounded-tr-3xl rounded-tl-3xl rounded-br-3xl`}>   
-                                <div className={`${user.name === nickname ? 'flex justify-end md:mr-10 mr-2' : 'ml-2 md:ml-10'}`}> <FilePreview username={user.name} nickname={nickname} fileUrl={user.fileUrl || 'empty'} name={user.message} size={user.size}/></div>                                
+                                <div className={`${user.name === nickname ? 'flex justify-end md:mr-10 mr-2' : 'ml-2 md:ml-10'}`}> <FilePreview username={user.name} nickname={nickname} fileUrl={user.fileUrl ?? 'empty'} name={user.message} size={user.size}/></div>                                
                             </div>
                             {dropdowns[messageIndex] && <div className={`${user.name === nickname ? 'self-end mr-10 -mt-16' : 'ml-96 -mt-16'}`}> <Dropdown message={user.message} name={user.name} nickname={nickname} index={messageIndex} onDeleteClick={() => handleDeleteClick(messageIndex)} onDeleteForMe={() => handleDeleteForMe(messageIndex)} onEdit={handleEdit}/> </div>}
                             <p className={`${font.poppinsMedium} text-[#737070] -mt-12 ${user.name === nickname ? "self-end mr-10" : 'mx-10'} py-2`}> {user.name === nickname ? "You" : user.name}, <span className='text-[#a2a2a2]'>{user.time}</span> </p>
