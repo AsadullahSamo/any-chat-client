@@ -60,7 +60,7 @@ export default function ChatPage() {
 						<input name="name" value={userDetails.name} placeholder='Enter the name' onChange={handleChange} type='text' maxLength={1000} className={`self-start ${font.poppinsMedium} bg-[#edf0f8] rounded-full shadow-lg md:mx-2 -mx-2 md:-ml-2 mt-2 pl-4 w-[20rem] md:w-[39rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} required/>
 					</label>
 					<label className={`mt-5 pl-5 md:pl-12 self-start md:-ml-2 ${font.poppinsSemiBold}`}> Phone* <br/>
-						<input name="phone" value={userDetails.phone} placeholder='Enter the phone number with country code' onChange={handleChange} type='text' pattern='((\+|00)?[1-9]{2}|0)[1-9]( ?[0-9]){8}' className='self-start ${font.poppinsMedium} bg-[#edf0f8] rounded-full shadow-lg md:mx-2 -mx-2 md:-ml-2 mt-2 pl-4 w-[20rem] md:w-[39rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500'/>
+						<input name="phone" value={userDetails.phone} placeholder='Enter the phone number with country code and without whitespaces like +921234567890' onChange={handleChange} type='text' pattern='((\+|00)?[1-9]{2}|0)[1-9]( ?[0-9]){8}' className='self-start ${font.poppinsMedium} bg-[#edf0f8] rounded-full shadow-lg md:mx-2 -mx-2 md:-ml-2 mt-2 pl-4 w-[20rem] md:w-[39rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500'/>
 					</label>
 
 					{showMessage && <p className='text-red-500 text-center text-sm my-5'> {fieldMessage} </p> }
