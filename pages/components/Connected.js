@@ -436,7 +436,7 @@ export default function Connected() {
               </div>
 
               {/* Input */}
-              {userDetails.name !== '' &&
+              {(active === "allMessages" || userDetails.name !== '') &&
               <footer className='mb-4 fixed top-[90%] w-[70%] h-[10vh] bg-[#ced9de] rounded-b-lg flex justify-center gap-2'>
                 <Image onClick={handleShowEmojis} src={emoji} alt="Smiling Emoji icon" className={`ml-1 md:ml-2 self-center hover:cursor-pointer`} />
                 <input placeholder='Send a message' onKeyDown={handleKeyDown} ref={inputRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`self-center ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[88%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
