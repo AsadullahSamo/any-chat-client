@@ -25,6 +25,10 @@ export default function ChatPage() {
 		  handleMessage('Please fill in all the fields')
 		  return
 		}
+		if(phone.includes(' ')) {
+			handleMessage('Phone number should not contain any whitespaces. Please match the required format +921234567890')
+			return
+		}
 		if (!isValidPhoneNumber(phone)) {
 		  handleMessage('Please enter a valid phone number')
 		  return

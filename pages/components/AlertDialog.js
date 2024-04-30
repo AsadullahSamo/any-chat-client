@@ -42,6 +42,10 @@ export default function AlertDialog({onAddDetails}) {
       handleMessage('Please fill in all the fields')
       return
     }
+    if(phone.includes(' ')) {
+      handleMessage('Phone number should not contain any whitespaces. Please matchh the required format +921234567890')
+      return
+    }
     if(myContacts.includes(phone)) {
       handleMessage('The user already exists in the contacts list. Please enter a different phone number.')
       return
