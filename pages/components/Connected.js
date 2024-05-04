@@ -72,7 +72,7 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`http://localhost:8000/users`)
+      fetch(`https://any-chat-server.onrender.com/users`)
       .then(res => res.json())
       .then(data => {
         setConnectedUsers(data)
@@ -80,7 +80,7 @@ export default function Connected() {
         setSectionHeight(sectionHeightRef.current?.clientHeight + 20)
       })
 
-      fetch(`http://localhost:8000/users/all`)
+      fetch(`https://any-chat-server.onrender.com/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -121,7 +121,7 @@ export default function Connected() {
       if(myDetails === null) {
         router.push('/')
       } else {
-        fetch(`http://localhost:8000/myContacts/${myDetails.userID}`)
+        fetch(`https://any-chat-server.onrender.com/myContacts/${myDetails.userID}`)
         .then(res => res.json())
         .then(data => {
           if(data.length === 0) return;
@@ -131,7 +131,7 @@ export default function Connected() {
     }, [])
 
     useEffect(() => {
-      const newSocket = io('http://localhost:8000');
+      const newSocket = io('https://any-chat-server.onrender.com');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  
@@ -327,7 +327,7 @@ export default function Connected() {
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
         let myDetails = JSON.parse(localStorage.getItem("myDetails"))
-        fetch('http://localhost:8000/upload', {
+        fetch('https://any-chat-server.onrender.com/upload', {
             method: 'POST',
             body: formData,
         })
@@ -345,7 +345,7 @@ export default function Connected() {
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
 
-        fetch('http://localhost:8000/upload', {
+        fetch('https://any-chat-server.onrender.com/upload', {
             method: 'POST',
             body: formData,
         })
