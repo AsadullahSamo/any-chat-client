@@ -144,6 +144,7 @@ export default function Connected() {
       })
 
       let myDetails = JSON.parse(localStorage.getItem("myDetails"))
+      if(myDetails === null) return
       newSocket.emit('user-connected', myDetails.name, myDetails.email, myDetails.userID)
       newSocket.on('user-connected', (name) => {
         setConnectedUsers(name)
