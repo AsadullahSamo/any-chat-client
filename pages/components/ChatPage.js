@@ -5,6 +5,7 @@ import font from '../../styles/Fonts.module.css'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Login from '../Login'
+import useLocalStorage from 'use-local-storage'
 
 export default function ChatPage() {
 
@@ -12,18 +13,7 @@ export default function ChatPage() {
 	const [userDetails, setUserDetails] = useState({name: '', email: ''})
 	const [showMessage, setShowMessage] = useState(false)
 	const [fieldMessage, setFieldMessage] = useState('')	
-	const [userID, setUserID] = useState('')
-	
-	// useEffect(() => {
-	// 	if(userDetails.email === '') return
-	// 	fetch(`https://any-chat-server.onrender.com//email?email=${userDetails.email}`)
-	// 		.then(res => res.json())
-	// 		.then(data => {
-	// 			setUserID(data[0].userID)
-	// 			console.log(data[0].userID)
-	// 			console.log(userID)
-	// 		})
-	// }, [userID]) // end of useEffect
+	const [myDetails, setMyDetails] = useLocalStorage('myDetails', {name: '', email: '', userID: ''})
 	
 	const handleChange = (e) => {
 		setUserDetails({...userDetails, [e.target.name]: e.target.value})
@@ -40,15 +30,15 @@ export default function ChatPage() {
 		  return
 		} else {
 			console.log(email)
-			fetch(`https://any-chat-server.onrender.com/email?email=${email}`)
+			fetch(`http://localhost:8000/email?email=${email}`)
 			.then(res => res.json())
 			.then(data => {
-				// setUserID(data[0].userID)
-				// console.log(data[0].userID)
 				if(data.length === 0) {
-					localStorage.setItem('myDetails', JSON.stringify({ name, email, userID: crypto.randomUUID() }));
+					// localStorage.setItem('myDetails', JSON.stringify({ name, email, userID: crypto.randomUUID() }));
+					setMyDetails({ name, email, userID: crypto.randomUUID() })
 				} else {
-					localStorage.setItem('myDetails', JSON.stringify({ name, email, userID: data[0].userID }));
+					// localStorage.setItem('myDetails', JSON.stringify({ name, email, userID: data[0].userID }));
+					setMyDetails({ name, email, userID: data[0].userID })
 				}
 			})
 
