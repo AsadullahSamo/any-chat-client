@@ -60,7 +60,7 @@ export default function Connected() {
     let [socket, setSocket] = useState(null);
 
     useEffect(() => {
-      localStorage.setItem('myDetails', JSON.stringify({name: myName, email: myEmail, userID: myUserID}))
+      localStorage.setItem('myLoginDetails', JSON.stringify({name: myName, email: myEmail, userID: myUserID}))
     }, [myName, myEmail, myUserID])
     
         
@@ -139,11 +139,6 @@ export default function Connected() {
         setConnectedUsers(prevUsers => prevUsers.filter(user => user !== name))
         setOriginalConnectedUsers(prevUsers => prevUsers.filter(user => user !== name))
       })
-
-      // let myDetails = JSON.parse(localStorage.getItem("myDetails"))
-      // if(myDetails === null) {
-      //   router.push('/')
-      // } else {
         newSocket.emit('user-connected', myName, myEmail, myUserID)
         newSocket.on('user-connected', (name) => {
           setConnectedUsers(name)
@@ -268,7 +263,7 @@ export default function Connected() {
       const message = inputRef.current.value;
       if(inputRef.current.value === '') return;
       // const myDetails = JSON.parse(localStorage.getItem("myDetails"))
-      socket.emit('send-message-to-user', false, 0, '', inputRef.current.value, myDetails.name, `${new Date().toLocaleString()}`, userDetails.userID, myUserID)
+      socket.emit('send-message-to-user', false, 0, '', inputRef.current.value, myName `${new Date().toLocaleString()}`, userDetails.userID, myUserID)
       setHeight(heightRef.current.clientHeight + 10);
       setMyMessages(prevMessages => [...prevMessages, {name: nickname, message: message, size: 0, isFile: false, time: `${new Date().toLocaleString()}`, userID: myUserID}])
       inputRef.current.value = '';
@@ -377,7 +372,7 @@ export default function Connected() {
     }
 
     const handleSignOut = () => {
-     localStorage.removeItem('myDetails')
+     localStorage.removeItem('myLoginDetails')
      signOut({ callbackUrl: 'http://localhost:3000'})
     }
     
@@ -404,7 +399,7 @@ export default function Connected() {
                     <p className={`text-5xl size-[60px] bg-gray-500 hover:cursor-pointer hover:bg-green-300 hover:transition-all hover:duration-500 text-white text-center rounded-full mt-[2px]`}> {userDetails.name.charAt(0) || 'A'} </p>
                     <div className='flex flex-col gap-1'>
                       <p className={`mt-1 text-black text-xl ${font.poppinsMedium} self-center`}> {userDetails.name || 'All my messages'} </p>
-                      <p className={`text-black ${font.poppinsRegular}`}> {userDetails.phone || JSON.parse(localStorage.getItem("myDetails")).phone} </p>
+                      {userDetails.name !== '' && <p className={`text-black text-sm ${font.poppinsRegular} self-start`}> {connectedUsers.includes(userDetails.name) ? 'Online' : 'Offline' } </p> }
                     </div>
                   </div>
                 </div>
@@ -427,7 +422,7 @@ export default function Connected() {
                 : active === "myMessages" ?
                   <Messages active="myMessages" userDetailsName={userDetails.name} messages={myMessages} nickname={myName} onDeleteMessage={deleteMessageForEveryone} onDeleteForMe={deleteMessageForMe} onEdit={handleEdit}/>
                 :
-                  <p className={`${font.poppinsRegular} text-center text-2xl`}> Your user id is {JSON.parse(localStorage.getItem("myDetails")).userID}</p>
+                  <p className={`${font.poppinsRegular} text-center text-2xl`}> Your user id is {JSON.parse(localStorage.getItem("myLoginDetails")).userID}</p>
                 }
               </div>
 
