@@ -5,7 +5,6 @@ import font from '../../styles/Fonts.module.css'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Login from '../Login'
-import useLocalStorage from 'use-local-storage'
 import { useSession } from 'next-auth/react'
 
 export default function ChatPage() {
@@ -14,7 +13,6 @@ export default function ChatPage() {
 	const [userDetails, setUserDetails] = useState({name: '', email: ''})
 	const [showMessage, setShowMessage] = useState(false)
 	const [fieldMessage, setFieldMessage] = useState('')	
-	// const [myDetails, setMyDetails] = useLocalStorage('myDetails', {name: '', email: '', userID: ''})
 	
 	const handleChange = (e) => {
 		setUserDetails({...userDetails, [e.target.name]: e.target.value})
@@ -35,21 +33,14 @@ export default function ChatPage() {
 			.then(res => res.json())
 			.then(data => {
 				if(data.length === 0) {
-					// localStorage.setItem('myDetails', JSON.stringify({ name, email, userID: crypto.randomUUID() }));
-					// setMyDetails({ name, email, userID: crypto.randomUUID() })
 					const userID = crypto.randomUUID()
 					router.push(`/components/Connected?name=${name}&email=${email}&userID=${userID}`)
 					console.log('new user')
 				} else {
-					// localStorage.setItem('myDetails', JSON.stringify({ name, email, userID: data[0].userID }));
-					// setMyDetails({ name, email, userID: data[0].userID })
 					router.push(`/components/Connected?name=${name}&email=${email}&userID=${data[0].userID}`)
 					console.log(data[0].userID)
 				}
 			})
-
-			
-			// localStorage.setItem('myDetails', JSON.stringify({ name, email, userID: crypto.randomUUID()}));
 			setUserDetails({ name: '', email: '' })
 		}
 	} // end of handleClick
@@ -90,8 +81,12 @@ export default function ChatPage() {
 					</>
 					}
 					
-					{session && <p className={`mt-2 text-6xl mb-16 ${font.poppinsMedium} md:text-xl leading-relaxed text-center mx-auto ${font.poppinsRegular}`}> Signed in successful, click on Join button to join the chat </p> }
-					<Login />
+					{session && 
+						<>
+							<p className={`mt-2 text-6xl mb-16 ${font.poppinsMedium} md:text-xl leading-relaxed text-center mx-auto ${font.poppinsRegular}`}> Signed in successful, click on Join button to join the chat </p> 
+							<Login />
+						</>
+					}
 				</div>
 
 		</div>
