@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import styled from 'styled-components';
+import Head from 'next/head';
 
 const P = styled.p`
 	&:focus {

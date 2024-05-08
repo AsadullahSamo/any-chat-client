@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import font from '../../styles/Fonts.module.css';
+import Head from 'next/head';
 
 export default function Card( { siteUrl, messagePart} ) {
 

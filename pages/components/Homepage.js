@@ -3,8 +3,8 @@ import Image from 'next/image'
 import logo from '../../public/assets/icons/logo.svg'
 import mobilePic from '../../public/assets/images/hand-holding-a-phone.png'
 import font from '../../styles/Fonts.module.css'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Head from 'next/head';
 
 export default function HomePage() {
 

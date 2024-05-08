@@ -11,6 +11,7 @@ import pptFile from '../../public/assets/icons/file-icons/ppt.svg';
 import documentFile from '../../public/assets/icons/file-icons/txt.svg';
 import videoFile from '../../public/assets/icons/file-icons/video.svg';
 import wordFile from '../../public/assets/icons/file-icons/word.svg';
+import Head from 'next/head';
 
 export default function FilePreview({fileUserID, name, size, fileUrl, userID}) {
 

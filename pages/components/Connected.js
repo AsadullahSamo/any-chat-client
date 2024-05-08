@@ -15,6 +15,7 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import AlertDialog from './AlertDialog';
 import parseQueryParameters from 'parse-url-query-params'
+import Head from 'next/head';
 
 const VisuallyHiddenInput = styled('input')({
   display: 'none'

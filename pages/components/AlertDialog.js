@@ -9,6 +9,7 @@ import Image from 'next/image';
 import plus from '../../public/assets/icons/plus.svg'
 import font from '../../styles/Fonts.module.css';
 import parsePhoneNumber from 'libphonenumber-js'
+import Head from 'next/head';
 
 export default function AlertDialog({onAddDetails}) {
 

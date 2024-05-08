@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import font from '../styles/Fonts.module.css'
-import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import Head from 'next/head';
 
 export default function Login() {
 

@@ -5,6 +5,7 @@ import Dropdown from './Dropdown';
 import { useState, useEffect } from 'react';
 import FilePreview from './FilePreview';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function Messages( {userDetailsName, messages, nickname, onDeleteMessage, onDeleteForMe, onEdit, userID} ) {
 
