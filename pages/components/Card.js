@@ -11,7 +11,7 @@ export default function Card( { siteUrl, messagePart} ) {
     useEffect(() => {
         if(!dataFetched) {
             setLoading(true);
-            fetch(`https://any-chat-server.onrender.com/scrape?url=${siteUrl}`)
+            fetch(`https://any-chat-server-fwh8.onrender.com/scrape?url=${siteUrl}`)
                 .then(res => res.json())
                 .then(data => {
                     setDataFromApi({...data, images: data.image});

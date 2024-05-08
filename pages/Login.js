@@ -34,7 +34,7 @@ export default function Login() {
   return (
     <>
       {/* Not signed in <br /> */}
-      <button className={`${font.poppinsSemiBold} text-white hover:text-black hover:cursor-pointer hover:transition-all hover:duration-700 text-xl text-center mx-auto -mt-10 rounded-xl w-[90%] h-12 bg-[#9CAEBC] hover:bg-white hover:border-2 hover:border-solid hover:border-[#9CAEBC]`} onClick={() => signIn('google', `https://any-chat-client.onrender.com/components/Connected`)}> Sign in with Google </button>
+      <button className={`${font.poppinsSemiBold} text-white hover:text-black hover:cursor-pointer hover:transition-all hover:duration-700 text-xl text-center mx-auto -mt-10 rounded-xl w-[90%] h-12 bg-[#9CAEBC] hover:bg-white hover:border-2 hover:border-solid hover:border-[#9CAEBC]`} onClick={() => signIn('google', `https://any-chat-client-99n9.onrender.com/components/Connected`)}> Sign in with Google </button>
     </>
   )
 

@@ -63,7 +63,7 @@ export default function Connected() {
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
-      fetch(`https://any-chat-server.onrender.com/users`)
+      fetch(`https://any-chat-server-fwh8.onrender.com/users`)
       .then(res => res.json())
       .then(data => {
         setConnectedUsers(data)
@@ -71,7 +71,7 @@ export default function Connected() {
         setSectionHeight(sectionHeightRef.current?.clientHeight + 20)
       })
 
-      fetch(`https://any-chat-server.onrender.com/users/all`)
+      fetch(`https://any-chat-server-fwh8.onrender.com/users/all`)
       .then(res => res.json())
       .then(data => {
         if(deletedMessages !== null) {
@@ -104,7 +104,7 @@ export default function Connected() {
     }, [userPosition])
 
     useEffect(() => {
-        fetch(`https://any-chat-server.onrender.com/myContacts/${myUserID}`)
+        fetch(`https://any-chat-server-fwh8.onrender.com/myContacts/${myUserID}`)
         .then(res => res.json())
         .then(data => {
           if(data.length === 0) return;
@@ -114,7 +114,7 @@ export default function Connected() {
     }, [])
 
     useEffect(() => {
-      const newSocket = io('https://any-chat-server.onrender.com');
+      const newSocket = io('https://any-chat-server-fwh8.onrender.com');
       setSocket(newSocket)
       
       newSocket.on('onlineUsers', (count) => {  
@@ -292,7 +292,7 @@ export default function Connected() {
     const handleFileChange = (e) => {
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
-        fetch('https://any-chat-server.onrender.com/upload', {
+        fetch('https://any-chat-server-fwh8.onrender.com/upload', {
             method: 'POST',
             body: formData,
         })
@@ -309,7 +309,7 @@ export default function Connected() {
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
 
-        fetch('https://any-chat-server.onrender.com/upload', {
+        fetch('https://any-chat-server-fwh8.onrender.com/upload', {
             method: 'POST',
             body: formData,
         })
@@ -340,7 +340,7 @@ export default function Connected() {
 
     const handleSignOut = () => {
      localStorage.removeItem('myLoginDetails')
-     signOut({ callbackUrl: 'https://any-chat-client.onrender.com'})
+     signOut({ callbackUrl: 'https://any-chat-client-99n9.onrender.com'})
     }
     
     return (
