@@ -10,7 +10,7 @@ export default function Login() {
   const router = useRouter()
 
   const handleClick = () => {
-    fetch(`https://any-chat-server.onrender.com/email?email=${session.user.email}`)
+    fetch(`https://any-chat-server-gt1k.onrender.com/email?email=${session.user.email}`)
 			.then(res => res.json())
 			.then(data => {
 				if(data.length === 0) {

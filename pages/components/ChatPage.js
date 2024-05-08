@@ -29,7 +29,7 @@ export default function ChatPage() {
 		  return
 		} else {
 			console.log(email)
-			fetch(`https://any-chat-server-fwh8.onrender.com/email?email=${email}`)
+			fetch(`https://any-chat-server-gt1k.onrender.com/email?email=${email}`)
 			.then(res => res.json())
 			.then(data => {
 				if(data.length === 0) {
