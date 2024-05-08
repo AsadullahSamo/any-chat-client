@@ -33,6 +33,14 @@ export default function HomePage() {
 
   return (
     <>
+    <Head>
+        <title> Homepage </title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="author" content="Asadullah Samoon" />
+        <meta name="description" content="This is homepage and entry point of any-chat" />
+        <meta charSet="utf-8" />
+    </Head>
+
     <div className='flex md:flex-row flex-col'>
 
       <div className='w-[100%] h-[10%] md:min-h-screen md:w-[50%] bg-[#edf0f8]'>

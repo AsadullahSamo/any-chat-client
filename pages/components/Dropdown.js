@@ -72,6 +72,13 @@ export default function Dropdown( {message, index, onDeleteClick, onDeleteForMe,
 
   return (
     <div className="relative inline-block text-left">
+        <Head>
+            <title> Dropdown </title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            <meta name="author" content="Asadullah Samoon" />
+            <meta name="description" content="This is dropdown page where Dropdown functionality is defined" />
+            <meta charSet="utf-8" />
+        </Head>
 
         <Dialog disableRestoreFocus fullWidth={fullScreen} className="flex justify-center" open={open} onClose={handleDialogClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
             <DialogActions className=''> 

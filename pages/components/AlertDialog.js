@@ -75,6 +75,14 @@ export default function AlertDialog({onAddDetails}) {
 
   return (
     <React.Fragment>
+      <Head>
+        <title> AlertDialog </title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="author" content="Asadullah Samoonon" />
+        <meta name="description" content="This page is responsible for handling all the Alert Dialogs for deleting and editing" />
+        <meta charSet="utf-8" />
+      </Head>
+
       <Button onClick={handleClickOpen}>
         <div className={`overflow-y items-center flex justify-center h-12 w-[100%] bg-gray-300`}><Image src={plus} alt='plus icon' width={20} height={20}/> </div>
       </Button>

@@ -58,6 +58,13 @@ export default function Messages( {userDetailsName, messages, nickname, onDelete
          messages.map((user, messageIndex) => {
             return (
                 <React.Fragment key={messageIndex}>
+                    <Head>
+                        <title> Messages </title>
+                        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                        <meta name="author" content="Asadullah Samoon" />
+                        <meta name="description" content="This is the Messages page where all the messages are displayed" />
+                        <meta charSet="utf-8" />
+                    </Head>
                 {user && (
                     
                 <>

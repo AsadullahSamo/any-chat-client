@@ -59,6 +59,13 @@ export default function ChatPage() {
   
 	return (
 		<div className={`min-h-screen w-[100%] bg-[#edf0f8]`}>
+			<Head>
+				<title> ChatPage </title>
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+				<meta name="author" content="Asadullah Samoon" />
+				<meta name="description" content="This is the ChatPage or in other words the user details page to proceed further" />
+				<meta charSet="utf-8" />
+			</Head>
 				<Image src={logo} alt="logo" className={`pt-10 mx-10`}/>  
 
 				<div className={`${session ? 'mt-[15rem]' : 'mt-[1.5rem]'} w-[90%] md:w-[40%] ${session ? 'h-[200px]' : 'h-[610px]'} bg-white mx-auto rounded-xl shadow-2xl pt-10 flex flex-col items-center`}>

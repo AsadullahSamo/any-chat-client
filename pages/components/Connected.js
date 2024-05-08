@@ -345,6 +345,14 @@ export default function Connected() {
     
     return (
       <>
+      <Head>
+        <title> Connected </title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="author" content="Asadullah Samoon" />
+        <meta name="description" content="This is the page where all the message handling functionalities are defined" />
+        <meta charSet="utf-8" />
+      </Head>
+
       {loading ? (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[#EDF0F8] bg-opacity-50 z-50">
           <div className={`${style.loader}`}></div>

@@ -38,6 +38,14 @@ export default function FilePreview({fileUserID, name, size, fileUrl, userID}) {
     
     return (
         <React.Fragment>
+            <Head>
+                <title> FilePreview </title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta name="author" content="Asadullah Samoon" />
+                <meta name="description" content="This is FilePreview page where if the message contains file they will be shown by this page" />
+                <meta charSet="utf-8" />
+            </Head>
+
             <article className="p-2 bg-gray-50 -mt-5 w-80 h-36 rounded overflow-hidden shadow-lg" style={{ border: '1px solid white' }}>
                 <div className='ml-5 flex justify-around gap-5'>
                     <Image style={{ objectFit: 'contain', width: '60px', height: '60px' }} className="w-full" src={fileImage} alt="image" />

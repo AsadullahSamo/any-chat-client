@@ -59,6 +59,15 @@ export default function Card( { siteUrl, messagePart} ) {
     }, [dataFetched, siteUrl]);
 
     return (
+        <>
+        <Head>
+            <title> Card </title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            <meta name="author" content="Asadullah Samoon" />
+            <meta name="description" content="This is the Card page which displays link preview if a message contains a link" />
+            <meta charSet="utf-8" />
+        </Head>
+
         <article className="-mt-5 md:max-w-sm rounded overflow-hidden shadow-lg" style={{border: '1px solid white'}}>
             {messagePart && messagePart.length > 0 && <p className={`bg-[#EDF0F8] break-words text-center ${font.poppinsMedium}`}>{messagePart}</p>  }
             {loading ? (
@@ -83,5 +92,6 @@ export default function Card( { siteUrl, messagePart} ) {
             </>
             )}
         </article>
+        </>
     );
 }
