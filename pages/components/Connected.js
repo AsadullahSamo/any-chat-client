@@ -60,7 +60,7 @@ export default function Connected() {
       setLoading(true);
       const deletedMessages = JSON.parse(localStorage.getItem('deletedMessages'));
       const myDeletedMessages = JSON.parse(localStorage.getItem('myDeletedMessages'));
-      fetch(`https://emoji-api.com/emojis?access_key=${process.env.EMOJI_API_KEY}`)
+      fetch('https://emoji-api.com/emojis?access_key=81b5e5f1c8f229449b4936039e5e60899f95f4c3')
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
