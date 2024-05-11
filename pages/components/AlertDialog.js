@@ -8,7 +8,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Image from 'next/image';
 import plus from '../../public/assets/icons/plus.svg'
 import font from '../../styles/Fonts.module.css';
-import parsePhoneNumber from 'libphonenumber-js'
 import Head from 'next/head';
 
 export default function AlertDialog({onAddDetails}) {
@@ -51,28 +50,11 @@ export default function AlertDialog({onAddDetails}) {
       onAddDetails({name, userID})
       setOpen(false);
     }
-    // if (!isValidPhoneNumber(phone)) {
-    //   handleMessage('Please enter a valid phone number')
-    //   return
-    // } 
-    // else {
-      
-    // }
-    
   }
 
   const handleChange = (e) => {
     setUserDetails({...userDetails, [e.target.name]: e.target.value})
   }
-
-  // const isValidPhoneNumber = (phone) => {
-  //   const phoneNumber = parsePhoneNumber(phone)
-  //   if (phoneNumber) {
-  //     return phoneNumber.isValid()
-  //   }
-  //   return false
-  // }
-  
 
   return (
     <React.Fragment>

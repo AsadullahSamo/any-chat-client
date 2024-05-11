@@ -32,7 +32,7 @@ export default function Card( { siteUrl, messagePart} ) {
             setDataFromApi(urls.get(siteUrl))
             setLoading(false);
         } else {
-            const apiKey = 'pk_379542c22162196f7598828469e2bc938ccdf938';
+            const apiKey = process.env.JSONLINK_API_KEY;
             const url = siteUrl;
             const apiUrl = `https://jsonlink.io/api/extract?url=${url}&api_key=${apiKey}`;
             
