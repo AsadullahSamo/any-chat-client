@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,10 +14,10 @@ import Head from 'next/head';
 export default function AlertDialog({onAddDetails}) {
 
 
-  const [open, setOpen] = React.useState(false);
-  const [userDetails, setUserDetails] = React.useState({name: '', userID: ''})
-  const [showMessage, setShowMessage] = React.useState(false)
-  const [fieldMessage, setFieldMessage] = React.useState('')
+  const [open, setOpen] = useState(false);
+  const [userDetails, setUserDetails] = useState({name: '', userID: ''})
+  const [showMessage, setShowMessage] = useState(false)
+  const [fieldMessage, setFieldMessage] = useState('')
   
   const handleClickOpen = () => {
     setShowMessage(false)

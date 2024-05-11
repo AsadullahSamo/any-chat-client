@@ -60,7 +60,7 @@ export default function Connected() {
       setLoading(true);
       const deletedMessages = JSON.parse(localStorage.getItem('deletedMessages'));
       const myDeletedMessages = JSON.parse(localStorage.getItem('myDeletedMessages'));
-      fetch('https://emoji-api.com/emojis?access_key=81b5e5f1c8f229449b4936039e5e60899f95f4c3')
+      fetch(`https://emoji-api.com/emojis?access_key=${process.env.EMOJI_API_KEY}`)
       .then(res => res.json())
       .then(data => setEmojis(data))   
 
@@ -388,7 +388,7 @@ export default function Connected() {
               </nav>
 
               {/* Messages */}
-              <div className='flex flex-col mb-10 gap-10'>
+              <div className='flex flex-col mb-20 gap-10'>
                 {userDetails.name === '' && active === "myMessages" &&
                   <p className={`${font.poppinsRegular} text-center text-2xl`}> Select a user to text them OR to view their messages OR your messages sent to them, if any</p>
                 }
@@ -402,7 +402,8 @@ export default function Connected() {
               </div>
 
               {/* Emojis */}
-              <div className={`${showEmojis ? `${style.fadeIn}` : `${style.fadeOut}`} mb-4 w-[20rem] h-[20rem] border-4 border-solid border-white flex flex-wrap mt-[4rem] overflow-y-auto bg-white rounded-xl`}>
+              {/* <div className={`fixed ${showEmojis ? `${style.fadeIn}` : `${style.fadeOut}`} mb-4 w-[20rem] h-[20rem] border-4 border-solid border-white flex flex-wrap mt-[4rem] overflow-y-auto bg-white rounded-xl`}> */}
+            <div className={`fixed ${showEmojis ? `${style.fadeIn}` : `${style.fadeOut}`} top-[46.5%] w-[20rem] h-[20rem] border-4 border-solid border-white flex flex-wrap overflow-y-auto bg-white rounded-xl`}>
                 {
                   emojis.map((emoji, index) => {
                     return (

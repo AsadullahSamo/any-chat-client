@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import font from '../../styles/Fonts.module.css';
 import Image from 'next/image';
 import Link from 'next/link';

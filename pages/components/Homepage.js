@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import logo from '../../public/assets/icons/logo.svg'
 import mobilePic from '../../public/assets/images/hand-holding-a-phone.png'
@@ -9,8 +9,8 @@ import Head from 'next/head';
 export default function HomePage() {
 
   const router = useRouter()
-  const [isAccount, setIsAccount] = React.useState(false)
-  let [myDetails, setMyDetails] = React.useState('')
+  const [isAccount, setIsAccount] = useState(false)
+  let [myDetails, setMyDetails] = useState('')
 
   useEffect(() => {
     const myLoginDetails = JSON.parse(localStorage.getItem('myLoginDetails'))
