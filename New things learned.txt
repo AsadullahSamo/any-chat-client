@@ -1,0 +1,10 @@
+loading animation
+socket.io (private and public messaging)
+api calls and db handling
+use of env variable in subfolders using Next.js
+NextAuth.js for Sign in/Sign Out
+Link Preview using jsonlink API and custom api
+File Sharing, Uploading and downloading (using multer and cloudinary)
+Exploring emoji API (emoji-base)
+deploying full stack app to production (like render.com)
+use and drawbacks of LocalStorage and possible ways of handling query params using Next.js
