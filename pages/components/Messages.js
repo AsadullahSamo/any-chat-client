@@ -60,7 +60,7 @@ export default function Messages( {userDetailsName, messages, nickname, onDelete
             return (
                 <React.Fragment key={messageIndex}>
                     <Head>
-                        <title> Messages </title>
+                        <title> Connected </title>
                         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                         <meta name="author" content="Asadullah Samoon" />
                         <meta name="description" content="This is the Messages page where all the messages are displayed" />
@@ -90,7 +90,7 @@ export default function Messages( {userDetailsName, messages, nickname, onDelete
                         </>
                     ) : (
                     <>
-                        <div className={`w-[70%] md:w-[30%] ${user.userID === userID ? 'text-white bg-blue-500 self-end md:mr-10 mr-3' : 'text-[#737070] bg-[#D6DCE3] ml-3 md:mx-10'} mt-5 rounded-tr-3xl rounded-tl-3xl rounded-br-3xl`}>
+                        <div className={`w-[50%] md:w-[40%] lg:w-[40%] xl:w-[30%] ${user.userID === userID ? 'text-white bg-blue-500 self-end md:mr-10 mr-3' : 'text-[#737070] bg-[#D6DCE3] ml-3 md:mx-10'} mt-5 rounded-tr-3xl rounded-tl-3xl rounded-br-3xl`}>
                             <span className='hover:cursor-pointer mr-5 self-center float-right relative top-0' onClick={() => toggleDropdown(messageIndex)}> &#x25be; </span>
                             <p className={`break-words px-4 text-center ${font.poppinsMedium}`}> {user.message} </p>    
                         </div>

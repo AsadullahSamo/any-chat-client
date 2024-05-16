@@ -34,7 +34,7 @@ export default function HomePage() {
   return (
     <>
     <Head>
-        <title> Homepage </title>
+        <title> Connected </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="author" content="Asadullah Samoon" />
         <meta name="description" content="This is homepage and entry point of any-chat" />

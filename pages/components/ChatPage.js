@@ -69,16 +69,16 @@ export default function ChatPage() {
 			</Head>
 				<Image src={logo} alt="logo" className={`pt-10 mx-10`}/>  
 
-				<div className={`${session ? 'mt-[15rem]' : 'mt-[1.5rem]'} w-[90%] md:w-[40%] ${session ? 'h-[200px]' : 'h-[610px]'} bg-white mx-auto rounded-xl shadow-2xl pt-10 flex flex-col items-center`}>
+				<div className={`${session ? 'mt-[15rem]' : 'mt-[1.5rem]'} w-[90%] md:w-[90%] lg:w-[75%] xl:w-[50%] ${session ? 'h-[200px]' : 'h-[610px]'} bg-white mx-auto rounded-xl shadow-2xl pt-10 flex flex-col items-center`}>
 					{!session &&
 					<>
 					<h2 className={`mb-8 md:mb-16 text-xl md:text-3xl w-[90%] md:w-[70%] leading-relaxed text-center mx-auto ${font.poppinsSemiBold}`}> Create your account </h2>
 					
 					<label className={`pl-5 md:pl-12 self-start md:-ml-2 ${font.poppinsSemiBold}`}> Name* <br/>
-						<input name="name" value={userDetails.name} placeholder='Enter your name' onChange={handleChange} type='text' maxLength={1000} className={`self-start ${font.poppinsMedium} bg-[#edf0f8] rounded-full shadow-lg md:mx-2 -mx-2 md:-ml-2 mt-2 pl-4 w-[20rem] md:w-[39rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} required/>
+						<input name="name" value={userDetails.name} placeholder='Enter your name' onChange={handleChange} type='text' maxLength={1000} className={`${font.poppinsMedium} bg-[#edf0f8] rounded-full shadow-lg mx-auto mt-2 pl-4 w-[23rem] sm:w-[36rem] md:w-[40rem] lg:w-[46rem] xl:w-[38rem] 2xl:w-[50rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} required/>
 					</label>
 					<label className={`mt-5 pl-5 md:pl-12 self-start md:-ml-2 ${font.poppinsSemiBold}`}> Email* <br/>
-						<input name="email" value={userDetails.email} placeholder='Enter your email' onChange={handleChange} type='email' className='self-start ${font.poppinsMedium} bg-[#edf0f8] rounded-full shadow-lg md:mx-2 -mx-2 md:-ml-2 mt-2 pl-4 w-[20rem] md:w-[39rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500' required/>
+						<input name="email" value={userDetails.email} placeholder='Enter your email' onChange={handleChange} type='email' className='self-start ${font.poppinsMedium} bg-[#edf0f8] rounded-full shadow-lg self-center mt-2 pl-4 w-[23rem] sm:w-[36rem] md:w-[40rem] lg:w-[46rem] xl:w-[38rem] 2xl:w-[50rem] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500' required/>
 					</label>
 			
 					{showMessage && <p className='text-red-500 text-center text-sm my-5'> {fieldMessage} </p> }

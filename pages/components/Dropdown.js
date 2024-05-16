@@ -74,7 +74,7 @@ export default function Dropdown( {message, index, onDeleteClick, onDeleteForMe,
   return (
     <div className="relative inline-block text-left">
         <Head>
-            <title> Dropdown </title>
+            <title> Connected </title>
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             <meta name="author" content="Asadullah Samoon" />
             <meta name="description" content="This is dropdown page where Dropdown functionality is defined" />

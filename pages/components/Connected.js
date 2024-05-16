@@ -361,15 +361,15 @@ export default function Connected() {
           <main className="min-h-screen bg-[#edf0f8]">
           <header className="flex justify-between items-center pt-10 mx-10 mb-5">
             <Image src={logo} alt='Any chat application logo' className="clear-right" />
-            <button className={`mt-2 ${font.poppinsSemiBold} text-white hover:text-black hover:cursor-pointer hover:transition-all hover:duration-700 text-xl text-center mx-auto -mt-10 rounded-xl w-[10%] h-12 bg-[#9CAEBC] hover:bg-white hover:border-2 hover:border-solid hover:border-[#9CAEBC] `} onClick={handleSignOut}> Sign out </button>  
+            <button className={`mt-2 ${font.poppinsSemiBold} text-white hover:text-black hover:cursor-pointer hover:transition-all hover:duration-700 text-xl text-center mx-auto -mt-10 rounded-xl w-[30%] md:w-[20%] lg:w-[15%] xl:w-[10%] h-12 bg-[#9CAEBC] hover:bg-white hover:border-2 hover:border-solid hover:border-[#9CAEBC] `} onClick={handleSignOut}> Sign out </button>  
             <p className="text-2xl"> Online: {connectedUsers.length} </p>
           </header>
 
-          <section className="flex flex-col-reverse md:flex-row md:order-2 order-1" >
-            <div ref={heightRef} className={`mb-5 h-[${height}vh] md:w-[70%] w-[95%] bg-white m-auto rounded-xl `}>
+          <section className="flex flex-col-reverse lg:flex-row md:order-2 order-1" >
+            <div ref={heightRef} className={`mb-5 h-[${height}vh] md:w-[90%] lg:w-[60%] xl:w-[70%] w-[95%] bg-white m-auto rounded-xl `}>
 
               {active === "myMessages" &&
-                <div className='rounded-t-lg bg-gray-100 w-[100%] h-[9vh]'> 
+                <div className={`rounded-t-lg bg-gray-100 w-[100%] h-[9vh]`}> 
                   <div className={`flex justify-center gap-5 px-4 text-white rounded-lg me-2`}>
                     <p className={`text-5xl size-[60px] bg-gray-500 hover:cursor-pointer hover:bg-green-300 hover:transition-all hover:duration-500 text-white text-center rounded-full mt-[2px]`}> {userDetails.name.charAt(0) || 'A'} </p>
                     <div className='flex flex-col gap-1'>
@@ -389,7 +389,7 @@ export default function Connected() {
               {/* Messages */}
               <div className='flex flex-col mb-20 gap-10'>
                 {userDetails.name === '' && active === "myMessages" &&
-                  <p className={`${font.poppinsRegular} text-center text-2xl`}> Select a user to text them OR to view their messages OR your messages sent to them, if any</p>
+                  <p className={`${font.poppinsRegular} text-center text-2xl h-[90vh]`}> Select a user to text them OR to view their messages OR your messages sent to them, if any</p>
                 }
                 {active === "allMessages" ?
                   <Messages userID={myUserID} active="allMessages" messages={data} nickname={myName} onDeleteMessage={deleteMessageForEveryone} onDeleteForMe={deleteMessageForMe} onEdit={handleEdit}/>
@@ -401,7 +401,6 @@ export default function Connected() {
               </div>
 
               {/* Emojis */}
-              {/* <div className={`fixed ${showEmojis ? `${style.fadeIn}` : `${style.fadeOut}`} mb-4 w-[20rem] h-[20rem] border-4 border-solid border-white flex flex-wrap mt-[4rem] overflow-y-auto bg-white rounded-xl`}> */}
             <div className={`fixed ${showEmojis ? `${style.fadeIn}` : `${style.fadeOut}`} top-[46.5%] w-[20rem] h-[20rem] border-4 border-solid border-white flex flex-wrap overflow-y-auto bg-white rounded-xl`}>
                 {
                   emojis.map((emoji, index) => {
@@ -416,7 +415,7 @@ export default function Connected() {
 
               {/* Input */}
               {(active === "allMessages" || userDetails.name !== '') &&
-              <footer className='mb-4 fixed top-[90%] w-[95%] md:w-[70%] h-[10vh] bg-[#ced9de] rounded-b-lg flex justify-center gap-1 md:gap-2'>
+              <footer className='mb-4 fixed top-[90%] w-[95%] md:w-[90%] lg:w-[60%] xl:w-[70%] h-[10vh] bg-[#ced9de] rounded-b-lg flex justify-center gap-1 md:gap-2'>
                 <Image onClick={handleShowEmojis} src={emoji} alt="Smiling Emoji icon" className={`ml-2 md:ml-2 self-center hover:cursor-pointer`} />
                 <input placeholder='Send a message' onKeyDown={handleKeyDown} ref={inputRef} onChange={(e) => e.target.value} type='text' maxLength={1000} className={`self-center ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 md:mx-2 pl-4 w-[88%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
                 <button onClick={active === "allMessages" ? handleClick : handleSpecificMessage}> <Image src={sendMessage} alt='Send message icon' className='mr-1 md:mr-2 self-center bg-[#9bb0bb] w-8 h-8 p-1 rounded-full hover:cursor-pointer hover:bg-[#5b6063] hover:transition-all hover:duration-500' /> </button>
@@ -431,7 +430,7 @@ export default function Connected() {
             </div>
 
             {/* Top/bottom cursor mover */}
-            <div className={`transition-all duration-500 fixed left-[65%] ${userPosition === "bottom" ? 'top-[80%]' : 'top-[83%]'} text-center size-12 bg-black mx-5 rounded-full animate-bounce`}>
+            <div className={`transition-all duration-500 fixed left-[65%] ${userPosition === "bottom" ? 'top-[70%]' : 'top-[83%]'} text-center size-12 bg-black mx-5 rounded-full animate-bounce`}>
               {userPosition === "top" ? 
                (<span className='text-4xl font-bold cursor-pointer text-white' onClick={navigateUser}> &#8681; </span> )
                :
@@ -441,7 +440,7 @@ export default function Connected() {
 
             {/* Connected Users */}
           {active === "allMessages" &&
-            <aside ref={sectionHeightRef} className={`md:w-96 md:h-[100vh] h-[30vh] overflow-y-auto mt-5 self-center md:self-start mx-auto md:mx-auto w-[100%] bg-white mr-10 mb-10`}>
+            <aside ref={sectionHeightRef} className={`w-[90%] lg:w-96 lg:h-[100vh] h-[30vh] overflow-y-auto mt-5 self-center md:self-start mx-auto md:mx-auto bg-white mr-10 mb-10`}>
             <input placeholder='Search the connected users' onChange={handleSearchChange} type='search' maxLength={1000} className={`mt-5 ${font.poppinsMedium} bg-[#f5f7fb] rounded-2xl shadow-lg mx-2 pl-4 w-[95%] h-12 border-2 border-solid border-[#d8dbe3] focus:outline-none focus:border-2 focus:border-solid focus:border-[#edf0f8] focus:transition-all focus:duration-500`} />
               <div className={`overflow-y items-center flex flex-col`}>
                 {connectedUsers.length !== 0 &&

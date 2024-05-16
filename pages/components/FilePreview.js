@@ -40,7 +40,7 @@ export default function FilePreview({fileUserID, name, size, fileUrl, userID}) {
     return (
         <React.Fragment>
             <Head>
-                <title> FilePreview </title>
+                <title> Connected </title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <meta name="author" content="Asadullah Samoon" />
                 <meta name="description" content="This is FilePreview page where if the message contains file they will be shown by this page" />
